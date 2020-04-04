@@ -6,9 +6,9 @@ import noImage from '../img/download.jpeg';
 
 
 let li = null;
-let img = null;
 
-const Pokemon = (props) => {
+
+const Berries = (props) => {
 
     const [pokeData, setPokeData] = useState(undefined);
 
@@ -16,7 +16,7 @@ const Pokemon = (props) => {
 
         async function fetchData() {
             try {
-                const { data: poke } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${props.match.params.id}/`);
+                const { data: poke } = await axios.get(`https://pokeapi.co/api/v2/berry/${props.match.params.id}/`);
                 setPokeData(poke);
                 console.log(poke);
             } catch (e) {
@@ -31,19 +31,14 @@ const Pokemon = (props) => {
         fetchData();
 
 
-    },[props.match.params.id]);
+    }, [props.match.params.id]);
 
     // if (pokeData && isNaN(pokeData)) {
     //     return <Redirect to='/notfound' />;
     // }
-    
+
     const buildPokeDetails = (pokeData) => {
-        if (pokeData && pokeData.sprites.front_default) {
-            img = <img alt={pokeData.name} src={pokeData.sprites.front_default} />
-        }
-        else {
-            img = <img alt='Show' src={noImage} />;
-        }
+        
         return (
             <li>
                 <label>
@@ -63,20 +58,20 @@ const Pokemon = (props) => {
 
 
                 <h1 className='cap-first-letter'>{pokeData && pokeData.name}</h1>
-                <br />
-                {img}
+
                 <br />
                 <p>
-                    <span className='title'>Height: </span>
-                    {pokeData && pokeData.height}
+                    <span className='title'>Growth Time: </span>
+                    {pokeData && pokeData.growth_time}
                     <br />
-                    <span className='title'>Weight:</span> {pokeData && pokeData.weight} <br />
-                    <span className='title'>Moves:</span>
+                    <span className='title'>Size:</span> {pokeData && pokeData.size} <br />
+                    <span className='title'>Smoothness:</span> {pokeData && pokeData.smoothness} <br />
+                    <span className='title'>flavors:</span>
                     <br />
                 </p>
                 <dl className='list-unstyled'>
-                    {pokeData && pokeData.moves.map((moves) => {
-                        return <dt key={moves.move}>{moves.move.name}</dt>
+                    {pokeData && pokeData.flavors.map((flavors) => {
+                        return <dt key={flavors.flavor}>{flavors.flavor.name}</dt>
                     })}
                 </dl>
                 <br />
@@ -85,7 +80,7 @@ const Pokemon = (props) => {
             </div>
         );
     }
-    else { 
+    else {
         return (
             <div className='show-body'>
                 <h1 className='cap-first-letter'>Loading Pokemon....</h1>
@@ -94,4 +89,4 @@ const Pokemon = (props) => {
     }
 
 }
-export default Pokemon;
+export default Berries;

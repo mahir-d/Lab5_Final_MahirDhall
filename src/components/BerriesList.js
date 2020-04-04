@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 
-const PokemonList = (props) => {
+const BerriesList = (props) => {
 
     const [pageDetails, setPageDetails] = useState(undefined);
 
@@ -12,7 +12,7 @@ const PokemonList = (props) => {
 
         async function fetchData() {
             try {
-                const { data: deets } = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${props.match.params.page * 20}}`);
+                const { data: deets } = await axios.get(`https://pokeapi.co/api/v2/berry/?limit=20&offset=${props.match.params.page * 20}}`);
                 setPageDetails(deets);
             } catch (e) {
                 console.log(e);
@@ -33,18 +33,18 @@ const PokemonList = (props) => {
     if (pageDetails && pageDetails.previous) {
         let curr = parseInt(props.match.params.page) - 1;
         console.log(parseInt("123/"));
-        prevLink = <Link to={`/pokemon/page/${curr}`}>Previous</Link>
+        prevLink = <Link to={`/berries/page/${curr}`}>Previous</Link>
     }
     let nextLink = null;
     if (pageDetails && pageDetails.next) {
         let curr = parseInt(props.match.params.page) + 1;
-        nextLink = <Link to={`/pokemon/page/${curr}`}>Next</Link>
+        nextLink = <Link to={`/berries/page/${curr}`}>Next</Link>
     }
 
-    
+
     function urlSub(pokemon) {
         let s = pokemon.url;
-        s = s.substring(34)
+        s = s.substring(32)
         return parseInt(s);
     }
 
@@ -57,7 +57,7 @@ const PokemonList = (props) => {
                 <ul>
                     {pageDetails && pageDetails.results.map((pokemon) => {
                         return <li key={pokemon.name}>
-                            <Link className='showLink' to={`/pokemon/${urlSub(pokemon)}`}>
+                            <Link className='showLink' to={`/berries/${urlSub(pokemon)}`}>
                                 {pokemon.name}
                             </Link>
                         </li>
@@ -71,7 +71,7 @@ const PokemonList = (props) => {
     else {
         return (
             <div className='show-body'>
-                <h1 className='cap-first-letter'>Populating Pokemon List...</h1>
+                <h1 className='cap-first-letter'>Populating Berries List...</h1>
             </div>
         )
     }
@@ -81,4 +81,4 @@ const PokemonList = (props) => {
 
 }
 
-export default PokemonList;
+export default BerriesList;

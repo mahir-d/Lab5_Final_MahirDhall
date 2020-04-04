@@ -4,8 +4,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PokemonList from './components/PokemonList';
 import Pokemon from './components/Pokemon';
-import Home from './components/Home';
+import BerriesList from './components/BerriesList';
 import Error from './components/Error';
+import Berries from './components/Berries';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Link className='showlink' to='/pokemon/page/0'>Pokemon</Link>
           <Link className='showlink' to='/berries/page/0'>Berries</Link>
           <Link className='showlink' to='/machines/page/0'>Machines</Link>
+          
 
         </header>
 
@@ -31,10 +33,13 @@ function App() {
           <p>The second link is a complete list of all available berries that help your Pokemon grow and improve its powers</p>
           <p>The third link is a complete list of all available machines that you as a pokemon trainer can buy to train your Pokemon</p>
 
-          <Route path='/' exact component={Home} />
+          
           <Route path='/pokemon/page/:page' exact component={PokemonList} />
+          <Route path='/berries/page/:page' exact component={BerriesList} />
           <Route path='/pokemon/:id' exact component={Pokemon} />
+          <Route path='/berries/:id' exact component={Berries} />
           <Route path='/notfound' exact component={Error} />
+          
           
 
         </div>
