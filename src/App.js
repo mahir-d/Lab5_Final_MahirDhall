@@ -7,6 +7,8 @@ import Pokemon from './components/Pokemon';
 import BerriesList from './components/BerriesList';
 import Error from './components/Error';
 import Berries from './components/Berries';
+import MachinesList from './components/MachinesList';
+import Machines from './components/Machines'
 
 
 function App() {
@@ -36,8 +38,10 @@ function App() {
           
           <Route path='/pokemon/page/:page' exact component={PokemonList} />
           <Route path='/berries/page/:page' exact component={BerriesList} />
+          <Route path='/machines/page/:page' exact component={MachinesList} />
           <Route path='/pokemon/:id' exact component={Pokemon} />
           <Route path='/berries/:id' exact component={Berries} />
+          <Route path='/machines/:id' exact component={Machines} />
           <Route path='/notfound' exact component={Error} />
           
           
