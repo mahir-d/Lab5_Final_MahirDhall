@@ -11,15 +11,16 @@ let li = null;
 const Berries = (props) => {
 
     const [pokeData, setPokeData] = useState(undefined);
-
+    const [error, setError] = useState(undefined);
     useEffect(() => {
 
         async function fetchData() {
             try {
                 const { data: poke } = await axios.get(`https://pokeapi.co/api/v2/berry/${props.match.params.id}/`);
                 setPokeData(poke);
-                console.log(poke);
+                
             } catch (e) {
+                setError(1);
                 console.log(e);
             }
 
@@ -33,9 +34,9 @@ const Berries = (props) => {
 
     }, [props.match.params.id]);
 
-    // if (pokeData && isNaN(pokeData)) {
-    //     return <Redirect to='/notfound' />;
-    // }
+    if (error && !pokeData) {
+        return <Redirect to='/notfound' />
+    }
 
     const buildPokeDetails = (pokeData) => {
         

@@ -11,6 +11,7 @@ let li = null;
 const Machines = (props) => {
 
     const [pokeData, setPokeData] = useState(undefined);
+    const [error, setError] = useState(undefined);
 
     useEffect(() => {
 
@@ -20,6 +21,7 @@ const Machines = (props) => {
                 setPokeData(poke);
                 console.log(poke);
             } catch (e) {
+                setError(1);
                 console.log(e);
             }
 
@@ -33,9 +35,9 @@ const Machines = (props) => {
 
     }, [props.match.params.id]);
 
-    // if (pokeData && isNaN(pokeData)) {
-    //     return <Redirect to='/notfound' />;
-    // }
+    if (error && !pokeData) {
+        return <Redirect to='/notfound' />;
+    }
 
     const buildPokeDetails = (pokeData) => {
 

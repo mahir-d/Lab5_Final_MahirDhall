@@ -11,6 +11,7 @@ let img = null;
 const Pokemon = (props) => {
 
     const [pokeData, setPokeData] = useState(undefined);
+    const [error, setError] = useState(undefined);
 
     useEffect(() => {
 
@@ -20,6 +21,7 @@ const Pokemon = (props) => {
                 setPokeData(poke);
                 console.log(poke);
             } catch (e) {
+                setError(1);
                 console.log(e);
             }
 
@@ -33,9 +35,7 @@ const Pokemon = (props) => {
 
     },[props.match.params.id]);
 
-    // if (pokeData && isNaN(pokeData)) {
-    //     return <Redirect to='/notfound' />;
-    // }
+    
     
     const buildPokeDetails = (pokeData) => {
         if (pokeData && pokeData.sprites.front_default) {
@@ -52,6 +52,9 @@ const Pokemon = (props) => {
 
             </li>
         );
+    }
+    if (error && !pokeData) { 
+        return <Redirect to='/notfound' />
     }
 
     if (pokeData) {
