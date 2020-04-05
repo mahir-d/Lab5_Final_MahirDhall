@@ -105,7 +105,7 @@ const Machines = (props) => {
     else {
         return (
             <div className='show-body'>
-                <h1 className='cap-first-letter'>Loading Pokemon....</h1>
+                <h1 className='cap-first-letter'>Loading Machine....</h1>
             </div>
         )
     }

@@ -7,6 +7,7 @@ import '../App.css'
 const PokemonList = (props) => {
 
     const [pageDetails, setPageDetails] = useState(undefined);
+    const [error, setError] = useState(undefined);
 
 
     useEffect(() => {
@@ -14,9 +15,15 @@ const PokemonList = (props) => {
 
         async function fetchData() {
             try {
+
+                
+                if (isNaN(props.match.params.page)) { 
+                    throw new Error('parameter page is not a number')
+                }
                 const { data: deets } = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${props.match.params.page * 20}}`);
                 setPageDetails(deets);
             } catch (e) {
+                setError(1);
                 console.log(e);
             }
         }
@@ -28,6 +35,9 @@ const PokemonList = (props) => {
 
     //if page does not exists
     if (pageDetails && props.match.params.page > pageDetails.count / 20) {
+        return <Redirect to='/notfound' />
+    }
+    else if (error) { 
         return <Redirect to='/notfound' />
     }
 

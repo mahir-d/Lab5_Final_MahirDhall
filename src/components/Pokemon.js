@@ -99,7 +99,7 @@ const Pokemon = (props) => {
                         </p>
                         <dl className='list-unstyled'>
                             {pokeData && pokeData.moves.map((moves) => {
-                                return <dt key={moves.move}>{moves.move.name}</dt>
+                                return <dt key={moves.move.name}>{moves.move.name}</dt>
                             })}
                         </dl>
                         <br />

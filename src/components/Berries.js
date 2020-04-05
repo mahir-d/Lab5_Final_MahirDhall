@@ -87,7 +87,7 @@ const Berries = (props) => {
                 </p>
                 <dl className='list-unstyled'>
                     {pokeData && pokeData.flavors.map((flavors) => {
-                        return <dt key={flavors.flavor}>{flavors.flavor.name}</dt>
+                        return <dt key={flavors.flavor.name}>{flavors.flavor.name}</dt>
                     })}
                 </dl>
                 <br />
@@ -99,7 +99,7 @@ const Berries = (props) => {
     else {
         return (
             <div className='show-body'>
-                <h1 className='cap-first-letter'>Loading Pokemon....</h1>
+                <h1 className='cap-first-letter'>Loading Berries....</h1>
             </div>
         )
     }
