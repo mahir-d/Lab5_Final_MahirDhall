@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 import '../App.css';
-import noImage from '../img/download.jpeg';
+import logo from '../img/pika.png';
 
 
 let li = null;
@@ -54,7 +54,22 @@ const Berries = (props) => {
         li = buildPokeDetails(pokeData);
         return (
 
-            <div className='show-body'>
+            <div className='App'>
+                <header className='App-header'>
+                    <img src={logo} className='App-logo' alt='logo' />
+                    <h1 className='App-title'>Welcome to your pokedex</h1>
+
+                    <Link className='showlink' to='/pokemon/page/0'>Pokemon</Link>
+                    <Link className='showlink' to='/berries/page/0'>Berries</Link>
+                    <Link className='showlink' to='/machines/page/0'>Machines</Link>
+
+
+                </header>
+                <br />
+                <br />
+                <p>The first link is a complete list of all 890 species of Pokémon currently known to exist</p>
+                <p>The second link is a complete list of all available berries that help your Pokemon grow and improve its powers</p>
+                <p>The third link is a complete list of all available machines that you as a pokemon trainer can buy to train your Pokemon</p>
 
 
 
